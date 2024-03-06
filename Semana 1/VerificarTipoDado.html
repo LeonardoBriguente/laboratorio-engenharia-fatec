@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Data Type</title>
+    <script>
+        let dataType = prompt("Write some information:");
+        let question = prompt("Do you wanna check the data type that you write? Yes or no");
+
+        if(question.toLocaleUpperCase() == "YES"){
+            if(!isNaN(dataType)){
+                document.write("<h3> You write a number </h3>");
+            }
+
+            else if(dataType == "true"){
+                document.write("<h3>You write a boolean</h3>");
+            }
+
+            else if(dataType == "false"){
+                document.write("<h3>You write a boolean</h3>");
+            }
+
+            else{
+                document.write("<h3>You write a string</h3>");
+            }
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
