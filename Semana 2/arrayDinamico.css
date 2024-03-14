@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: 0;
+}
+
+body{
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    
+}
+
+section.box{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: lightgray;
+
+    & h3{
+        margin: 5rem 0 20px 0;
+    }
+
+    & form{
+        width: 21rem;
+    }
+}
+
+div{
+    width: 150px;
+    height: auto;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nome{
+    margin-top: 5px;
+}
+
+.s{
+    margin-bottom: 5px;
+}

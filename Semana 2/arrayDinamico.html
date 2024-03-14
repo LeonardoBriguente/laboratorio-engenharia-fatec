@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="arrayDinamico.css">
+    <title>Dynamic Array</title>
+    <script defer>
+        function Student() {
+            let name;
+            let age;
+            let nameSchool;
+
+            this.setName = function (InputName) {
+                this.name = InputName;
+            }
+
+            this.getName = function () {
+                return this.name;
+            }
+
+            this.setAge = function (InputAge) {
+                this.age = InputAge;
+            }
+
+            this.getAge = function () {
+                return this.age;
+            }
+
+            this.setNameSchool = function (InputNameSchool) {
+                this.nameSchool = InputNameSchool;
+            }
+
+            this.getNameSchool = function () {
+                return this.nameSchool;
+            }
+        }
+
+        arrayStudents = [];
+
+        function sortStudentsByName() {
+            arrayStudents.sort(function (a, b) {
+                let nameA = a.getName().toUpperCase();
+                let nameB = b.getName().toUpperCase();
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
+
+        function GetStudents(position) {
+            let studentDiv = document.createElement("div");
+            studentDiv.classList.add("card-student"); //classList adiciona uma class a uma tag
+            studentDiv.setAttribute("style", "width: 150px;height: auto; border: 1px solid black; border - radius: 10px; display: flex; flex - direction: column; align - items: center; margin-bottom: 10px;");
+
+            let showName = document.createElement("p");
+            showName.innerHTML = "<strong>Name:</strong> " + arrayStudents[position].getName();
+            showName.setAttribute("style", "margin-top: 5px;")
+
+            let showAge = document.createElement("p");
+            showAge.innerHTML = "<strong>Age:</strong> " + arrayStudents[position].getAge();
+
+            let showSchool = document.createElement("p");
+            showSchool.innerHTML = "<strong>School:</strong> " + arrayStudents[position].getNameSchool();
+            showSchool.setAttribute("style", "margin-bottom: 5px;")
+
+            studentDiv.appendChild(showName);
+            studentDiv.appendChild(showAge);
+            studentDiv.appendChild(showSchool);
+
+            document.getElementById("box").appendChild(studentDiv);
+        }
+
+        function ShowAllStudent() {
+            let verifyDivs = document.getElementsByTagName("div");
+            //Verificar o pq de não funcionar o delete do elemento já na tela. Prof me socorre :(
+            if (verifyDivs > 0) {
+                for (let i = 0; i < verifyDivs.length; i++) {
+                    verifyDivs[i].innerHTML = "";
+                }
+
+                arrayStudents.forEach(function (student, index) {
+                    GetStudents(index);
+                });
+            }
+
+            else {
+                arrayStudents.forEach(function (student, index) {
+                    GetStudents(index);
+                });
+            }
+
+
+            // if (arrayStudents.length - 1 == 0) {
+            //     GetStudents(0);
+            // }
+
+            // else {
+            //     let lastElement = arrayStudents.length - 1;
+            //     GetStudents(lastElement);
+            // }
+
+        }
+
+        function AddStudent(event) {
+            event.preventDefault();
+
+            let student = new Student();
+
+            student.setName(document.getElementById("InputName").value);
+            student.setAge(document.getElementById("InputAge").value);
+            student.setNameSchool(document.getElementById("InputSchool").value);
+
+            arrayStudents.push(student);
+            document.getElementById("InputName").value = "";
+            document.getElementById("InputAge").value = "";
+            document.getElementById("InputSchool").value = "";
+
+            sortStudentsByName();
+            ShowAllStudent();
+        }
+    </script>
+</head>
+
+<body>
+    <section id="box" class="box">
+        <h3>This is an exercise about dinamic array</h3>
+        <form onsubmit="AddStudent(event)">
+            <label for="InputName">Name: </label>
+            <input type="text" id="InputName" placeholder="Insert the name"><br><br>
+
+            <label for="InputAge">Age:</label>
+            <input type="number" id="InputAge" placeholder="Insert the age"><br><br>
+
+            <label for="InputSchool">Name of School:</label>
+            <input type="text" id="InputSchool" placeholder="Insert the name of school"><br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+</body>
+
+</html>
