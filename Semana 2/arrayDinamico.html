@@ -77,11 +77,11 @@
         }
 
         function ShowAllStudent() {
-            let verifyDivs = document.getElementsByTagName("div");
-            //Verificar o pq de não funcionar o delete do elemento já na tela. Prof me socorre :(
-            if (verifyDivs > 0) {
+            let verifyDivs = document.querySelectorAll(".card-student");
+
+            if (verifyDivs.length > 0) {
                 for (let i = 0; i < verifyDivs.length; i++) {
-                    verifyDivs[i].innerHTML = "";
+                    verifyDivs[i].remove();
                 }
 
                 arrayStudents.forEach(function (student, index) {
@@ -94,17 +94,6 @@
                     GetStudents(index);
                 });
             }
-
-
-            // if (arrayStudents.length - 1 == 0) {
-            //     GetStudents(0);
-            // }
-
-            // else {
-            //     let lastElement = arrayStudents.length - 1;
-            //     GetStudents(lastElement);
-            // }
-
         }
 
         function AddStudent(event) {
