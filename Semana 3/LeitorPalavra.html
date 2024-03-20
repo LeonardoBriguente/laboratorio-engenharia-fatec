@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor</title>
+    <script defer>
+        function VerificarPalavra(){
+            let word = document.getElementById("palavra").value;
+
+            let palavraContrario = word.split('').reverse().join('');
+
+            if (word == palavraContrario){
+                alert("Essa palavra é um palígrafo!");
+            }
+            else{
+                alert("Essa palavra não é um palígrafo!");
+            }
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <input type="text" id="palavra"><br>
+        <input type="submit" onclick="VerificarPalavra()">
+    </form>
+</body>
+</html>

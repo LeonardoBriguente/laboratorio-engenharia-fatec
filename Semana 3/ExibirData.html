@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show today's date</title>
+    <script>
+        let dataAtual = new Date();
+    
+        let data = {
+            weekday: "long",
+            day: "numeric",
+            month: "long", 
+            year: "numeric"
+        };
+    
+        let formatado = dataAtual.toLocaleDateString("pt-BR", data);
+    
+        document.write(formatado);
+    </script>
+    
+</head>
+<body>
+    
+</body>
+</html>
