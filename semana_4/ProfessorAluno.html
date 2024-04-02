@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="ProfessorAluno.css">
+    <script defer>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Função para exibir os campos de acordo com a opção selecionada (Professor ou Aluno)
+            function exibirCampos() {
+                let tipo = document.querySelector('input[name="tipo"]:checked').value;
+                let camposProfessor = document.querySelectorAll('.cont-professor');
+                let camposAluno = document.querySelectorAll('.cont-aluno');
+
+                if (tipo === 'professor') {
+                    camposProfessor.forEach(function(campo) {
+                        campo.style.display = 'block';
+                    });
+                    camposAluno.forEach(function(campo) {
+                        campo.style.display = 'none';
+                    });
+                } else if (tipo === 'aluno') {
+                    camposProfessor.forEach(function(campo) {
+                        campo.style.display = 'none';
+                    });
+                    camposAluno.forEach(function(campo) {
+                        campo.style.display = 'block';
+                    });
+                }
+            }
+
+            // Adicionar evento de clique aos inputs de Professor e Aluno
+            let inputsTipo = document.querySelectorAll('input[name="tipo"]');
+            inputsTipo.forEach(function(input) {
+                input.addEventListener('click', exibirCampos);
+            });
+
+            // Adicionar evento de submit ao formulário
+            let form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Impede o envio do formulário
+                exibirDados(); // Função para exibir os dados abaixo do formulário
+            });
+
+            // Adicionar evento de clique ao botão "Redefinir"
+            let btnRedefinir = document.querySelector('button[type="reset"]');
+            btnRedefinir.addEventListener('click', function() {
+                let camposProfessor = document.querySelectorAll('.cont-professor');
+                let camposAluno = document.querySelectorAll('.cont-aluno');
+
+                camposProfessor.forEach(function(campo) {
+                    campo.style.display = 'none';
+                });
+
+                camposAluno.forEach(function(campo) {
+                    campo.style.display = 'none';
+                });
+
+                // Limpar o conteúdo apresentado
+                let resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = '';
+            });
+
+            // Função para exibir os dados abaixo do formulário
+            function exibirDados() {
+                let resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = ''; // Limpa o conteúdo anterior
+
+                let h2 = document.createElement('h2');
+                h2.textContent = 'Dados do Cadastro';
+                resultadoDiv.appendChild(h2);
+
+                let nome = document.getElementById('nome').value;
+                let email = document.getElementById('email').value;
+                let dataNascimento = document.getElementById('data_nascimento').value;
+                let telefoneFixo = document.getElementById('telefone_fixo').value;
+                let telefoneCelular = document.getElementById('telefone_celular').value;
+                let tipo = document.querySelector('input[name="tipo"]:checked').value;
+                let area = document.getElementById('area').value;
+                let matriculaProfessor = document.getElementById('matriculaProfessor').value;
+                let lattes = document.getElementById('lattes').value;
+                let curso = document.getElementById('curso').value;
+                let matriculaAluno = document.getElementById('matriculaAluno').value;
+
+                let pNome = document.createElement('p');
+                pNome.innerHTML = `<strong>Nome:</strong> ${nome}`;
+                resultadoDiv.appendChild(pNome);
+
+                let pEmail = document.createElement('p');
+                pEmail.innerHTML = `<strong>Email:</strong> ${email}`;
+                resultadoDiv.appendChild(pEmail);
+
+                let pDataNascimento = document.createElement('p');
+                pDataNascimento.innerHTML = `<strong>Data de Nascimento:</strong> ${dataNascimento}`;
+                resultadoDiv.appendChild(pDataNascimento);
+
+                let pTelefoneFixo = document.createElement('p');
+                pTelefoneFixo.innerHTML = `<strong>Telefone Fixo:</strong> ${telefoneFixo}`;
+                resultadoDiv.appendChild(pTelefoneFixo);
+
+                let pTelefoneCelular = document.createElement('p');
+                pTelefoneCelular.innerHTML = `<strong>Telefone Celular:</strong> ${telefoneCelular}`;
+                resultadoDiv.appendChild(pTelefoneCelular);
+
+                let pTipo = document.createElement('p');
+                pTipo.innerHTML = `<strong>Tipo:</strong> ${tipo}`;
+                resultadoDiv.appendChild(pTipo);
+
+                if (tipo === 'professor') {
+                    let pArea = document.createElement('p');
+                    pArea.innerHTML = `<strong>Área:</strong> ${area}`;
+                    resultadoDiv.appendChild(pArea);
+
+                    let pMatriculaProfessor = document.createElement('p');
+                    pMatriculaProfessor.innerHTML = `<strong>Matrícula:</strong> ${matriculaProfessor}`;
+                    resultadoDiv.appendChild(pMatriculaProfessor);
+
+                    let pLattes = document.createElement('p');
+                    pLattes.innerHTML = `<strong>Lattes:</strong> ${lattes}`;
+                    resultadoDiv.appendChild(pLattes);
+                }
+
+                if (tipo === 'aluno') {
+                    let pCurso = document.createElement('p');
+                    pCurso.innerHTML = `<strong>Curso:</strong> ${curso}`;
+                    resultadoDiv.appendChild(pCurso);
+
+                    let pMatriculaAluno = document.createElement('p');
+                    pMatriculaAluno.innerHTML = `<strong>Matrícula:</strong> ${matriculaAluno}`;
+                    resultadoDiv.appendChild(pMatriculaAluno);
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Formulário de Cadastro</h1>
+        <form action="#">
+            <div class="campo">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo">
+            </div>
+            <div class="campo">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="fulano@email.com">
+            </div>
+            <div class="campo">
+                <label for="data_nascimento">Data de Nascimento:</label>
+                <input type="date" id="data_nascimento" name="data_nascimento">
+            </div>
+            <div class="campo">
+                <label for="telefone_fixo">Telefone Fixo:</label>
+                <input type="tel" id="telefone_fixo" name="telefone_fixo">
+            </div>
+            <div class="campo">
+                <label for="telefone_celular">Telefone Celular:</label>
+                <input type="tel" id="telefone_celular" name="telefone_celular">
+            </div>
+            <div class="campo-troca">
+                <input type="radio" id="professor" name="tipo" value="professor">
+                <label for="professor">Professor</label><br>
+                <input type="radio" id="aluno" name="tipo" value="aluno">
+                <label for="aluno">Aluno</label>
+            </div>
+            <div class="campo cont-professor">
+                <label for="area">Área:</label>
+                <input type="text" id="area" name="area" placeholder="Digite sua área de atuação">
+            </div>
+            <div class="campo cont-professor">
+                <label for="matriculaProfessor">Matrícula:</label>
+                <input type="text" id="matriculaProfessor" name="matriculaProfessor" placeholder="Digite sua matrícula">
+            </div>
+            <div class="campo cont-professor">
+                <label for="lattes">Lattes:</label>
+                <input type="text" id="lattes" name="lattes" placeholder="Digite aqui o endereço para seu Lattes">
+            </div>
+
+            <div class="campo cont-aluno">
+                <label for="curso">Curso:</label>
+                <input type="text" id="curso" name="curso" placeholder="Digite seu curso">
+            </div>
+            <div class="campo cont-aluno">
+                <label for="matriculaAluno">Matrícula:</label>
+                <input type="text" id="matriculaAluno" name="matriculaAluno" placeholder="Digite sua matrícula">
+            </div>
+            <div class="botoes">
+                <button type="submit">Enviar</button>
+                <button type="reset">Redefinir</button>
+            </div>
+        </form>
+        <div id="resultado"></div>
+    </div>
+</body>
+</html>

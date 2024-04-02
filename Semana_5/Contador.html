@@ -1,0 +1,198 @@
+<!DOCTYPE html5>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador de pessoas</title>
+    <script defer>
+        class Pessoa {
+            constructor() {
+                this.qtdHomem = 0;
+                this.qtdMulher = 0;
+                this.totalPessoas = 0;
+            }
+
+            getQtdHomem() {
+                return this.qtdHomem;
+            }
+
+            getQtdMulher() {
+                return this.qtdMulher;
+            }
+
+            getTotalPessoas() {
+                return this.totalPessoas;
+            }
+
+            AumentarHomem() {
+                this.qtdHomem++;
+                this.totalPessoas++;
+            }
+
+            RetirarHomem() {
+                if (this.qtdHomem > 0) {
+                    this.qtdHomem--;
+                    this.totalPessoas--;
+                }
+            }
+
+            AumentarMulher() {
+                this.qtdMulher++;
+                this.totalPessoas++;
+            }
+
+            RetirarMulher() {
+                if (this.qtdMulher > 0) {
+                    this.qtdMulher--;
+                    this.totalPessoas--;
+                }
+            }
+
+            ZerarContagem() {
+                this.qtdHomem = 0;
+                this.qtdMulher = 0;
+                this.totalPessoas = 0;
+            }
+
+            AtualizarValor(){
+
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            let contagem = new Pessoa()
+
+            //Criação do conteúdo visual
+            let body = document.querySelector("body");
+            body.setAttribute("style", "display: flex; justify-content: center; align-items: center");
+
+            //Box
+            let principalBox = document.getElementById("box");
+            principalBox.classList.add("box-principal");
+            principalBox.setAttribute("style", "width: 40em; height: 43em; border: 1px solid black");
+
+            //Div com o total
+            let divTotal = document.createElement("div");
+            divTotal.classList.add("divTotal");
+            divTotal.setAttribute("style", "width: 20em; height: 3em; display: flex; flex-direction: column; align-items: flex-end; float: left");
+
+            // Titulo total
+            let h2Total = document.createElement("h2");
+            h2Total.setAttribute("style", "margin: 10px 0 0 0");
+            h2Total.textContent = "Total";
+
+            // parágrafo total
+            let pTotal = document.createElement("p");
+            pTotal.setAttribute("style", "padding: 10px 20px; border: 1px solid black");
+            pTotal.textContent = contagem.getTotalPessoas();
+
+            ///Imagem reset
+            let imgReset = document.createElement("img");
+            imgReset.src = "reset-btn.png";
+            imgReset.setAttribute("style", "width: 3rem; height: 3em; margin: 2.5rem 0 0 4rem; clear: both");
+
+            principalBox.appendChild(imgReset);
+            imgReset.addEventListener('click', function(){
+                contagem.ZerarContagem();
+                pTotal.textContent = contagem.getTotalPessoas();
+                totalHomem.textContent = contagem.getQtdHomem();
+                totalMulher.textContent = contagem.getQtdMulher();
+            })
+
+            //div por sexo
+            let divsexo = document.createElement("div");
+            divsexo.setAttribute("style", "width: 30em; height: 25em; margin: 3rem 0 0 5em; display: grid; grid-template-columns: repeat(2, 1fr);");
+
+            //Div homens
+            let divHomem = document.createElement("div");
+            divHomem.setAttribute("style", "grid-clumns: span 1");
+
+            //imagem homem
+            let homemIMG = document.createElement("img");
+            homemIMG.src = "homem.png";
+            homemIMG.setAttribute("style", "width: 7rem; height: auto; margin-left: 3em;");
+
+            //botões
+            let adicionarHomem = document.createElement("p");
+            adicionarHomem.setAttribute("style", "width: 16px; margin: 16px 0 2px 1em; border: 1px solid black; background-color: green;text-align: center");
+            adicionarHomem.textContent = "+";
+            adicionarHomem.addEventListener('click', function(){
+                contagem.AumentarHomem();
+                pTotal.textContent = contagem.getTotalPessoas();
+                totalHomem.textContent = contagem.getQtdHomem();
+                
+            })
+
+            let retirarHomem = document.createElement("p");
+            retirarHomem.setAttribute("style", "width: 16px; margin: 16px 0 2px 1em; border: 1px solid black; background-color: red;text-align: center");
+            retirarHomem.textContent = "-";
+            retirarHomem.addEventListener('click', function(){
+                contagem.RetirarHomem();
+                pTotal.textContent = contagem.getTotalPessoas();
+                totalHomem.textContent = contagem.getQtdHomem();
+            })
+
+            //View Homem
+            let totalHomem = document.createElement("p");
+            totalHomem.setAttribute("style", "width: 1em; padding: 10px 20px; border: 1px solid black");
+            totalHomem.textContent = contagem.getTotalPessoas();
+
+            //MULHER PART
+            //Div 
+            let divMulher = document.createElement("div");
+            divHomem.setAttribute("style", "grid-clumns: span 1");
+
+            //imagem homem
+            let mulherIMG = document.createElement("img");
+            mulherIMG.src = "mulher.png";
+            mulherIMG.setAttribute("style", "width: 7rem; height: auto; margin-left: 3em;");
+
+            let adicionarMulher = document.createElement("p");
+            adicionarMulher.setAttribute("style", "width: 16px; margin: 16px 0 2px 1em; border: 1px solid black; background-color: green;text-align: center");
+            adicionarMulher.textContent = "+";
+            adicionarMulher.addEventListener('click', function(){
+                contagem.AumentarMulher();
+                pTotal.textContent = contagem.getTotalPessoas();
+                totalMulher.textContent = contagem.getQtdMulher();
+            })
+
+            let retirarMulher = document.createElement("p");
+            retirarMulher.setAttribute("style", "width: 16px; margin: 16px 0 2px 1em; border: 1px solid black; background-color: red;text-align: center");
+            retirarMulher.textContent = "-";
+            retirarMulher.addEventListener('click', function(){
+                contagem.RetirarMulher();
+                pTotal.textContent = contagem.getTotalPessoas();
+                totalMulher.textContent = contagem.getQtdMulher();
+            })
+
+            let totalMulher = document.createElement("p");
+            totalMulher.setAttribute("style", "width: 1em; padding: 10px 20px; border: 1px solid black");
+            totalMulher.textContent = contagem.getQtdMulher();
+
+            //Adicionando os filhos
+            principalBox.appendChild(divTotal);
+            divTotal.appendChild(h2Total);
+            divTotal.appendChild(pTotal);
+            principalBox.appendChild(divsexo);
+            divsexo.appendChild(divHomem);
+            divHomem.appendChild(homemIMG);
+            divHomem.appendChild(adicionarHomem);
+            divHomem.appendChild(retirarHomem);
+            divHomem.appendChild(totalHomem);
+            divsexo.appendChild(divMulher);
+            divMulher.appendChild(mulherIMG);
+            divMulher.appendChild(adicionarMulher);
+            divMulher.appendChild(retirarMulher);
+            divMulher.appendChild(totalMulher);
+            
+
+        });
+    </script>
+</head>
+
+<body>
+    <div id="box"></div>
+</body>
+
+</html>

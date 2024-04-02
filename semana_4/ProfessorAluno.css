@@ -1,0 +1,157 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f7f7f7;
+}
+
+/* Container */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Campos */
+.campo {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #777;
+}
+
+.campo input,
+.campo select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    color: #444;
+}
+
+.campo input:focus,
+.campo select:focus {
+    border-color: #999;
+}
+
+/* Erro */
+.erro {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Botões */
+.botoes {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.botoes button {
+    margin-left: 10px;
+    padding: 10px 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.botoes button:hover {
+    background-color: #ccc;
+}
+
+.botoes button[type="submit"] {
+    background-color: #0073b7;
+    color: #fff;
+}
+
+/* Estilos específicos para alguns campos */
+
+.campo.campo-grande {
+    width: 50%;
+}
+
+.campo.campo-pequeno {
+    width: 25%;
+}
+
+.campo.campo-data {
+    width: 150px;
+}
+
+/* Media queries para responsividade */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .campo {
+        margin-bottom: 5px;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    .botoes button {
+        margin-left: 0;
+        margin-bottom: 5px;
+    }
+}
+
+input[type="radio"]{
+    width: 20px;
+}
+
+.campo-troca {
+    margin-bottom: 10px;
+}
+
+.campo-troca label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #777;
+}
+
+.cont-professor{
+    display: none;
+}
+
+.cont-aluno{
+    display: none;
+}
