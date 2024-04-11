@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="calculadora.css">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <div id="calculadora"></div>
+
+    <script>
+        class Calculadora {
+            // make a div to put the input inside
+            constructor() {
+                this.display = document.createElement("input");
+                this.display.classList.add('resultado');
+                this.display.type = 'text';
+                this.display.value = "0";
+                this.display.disabled = true;
+                document.getElementById("calculadora").appendChild(this.display);
+            }
+
+            AdicionarAoDisplay(valor) {
+                if (this.display.value === "0") {
+                    this.display.value = valor;
+                } else {
+                    if (valor === 'x') {
+                        valor = '*';
+                    }
+                    this.display.value += valor;
+                }
+            }
+
+
+
+            LimparDisplay() {
+                this.display.value = "0";
+            }
+
+            Calcular() {
+                try {
+                    this.display.value = eval(this.display.value);
+                } catch {
+                    this.display.value = "Erro";
+                }
+            }
+
+
+            TrocarSinal() {
+                let atual = this.display.value;
+
+                if (atual >= 0) {
+                    this.display.value = -atual;
+                }
+                else {
+                    this.display.value = +atual;
+                }
+
+            }
+        }
+
+        const calculadora = new Calculadora();
+
+        const valorBotao = ['AC', '-/+', '%', '/', '7', '8', '9', 'x', '4', '5', '6', '-', '1', '2', '3', '+', '0', ',', '='];
+
+        let div = null;
+        for (let i = 0; i < valorBotao.length; i++) {
+            if (i % 4 == 0) {
+                div = document.createElement('div');
+                div.classList.add('div-elemento');
+            }
+
+            let digito = valorBotao[i];
+            let botao = document.createElement('button');
+            botao.classList.add('botao');
+            botao.textContent = digito;
+
+            if (digito == "=") {
+                botao.classList.add("operador");
+                botao.addEventListener("click", () => calculadora.Calcular());
+            }
+            else if (['+', '-', 'x', '/'].includes(digito)) {
+                botao.classList.add("operador");
+                botao.addEventListener("click", () => calculadora.AdicionarAoDisplay(digito));
+            }
+
+            else if (digito == "AC") {
+                botao.classList.add("top");
+                botao.addEventListener('click', () => calculadora.LimparDisplay());
+            }
+            else if (digito == '%') {
+                botao.classList.add("top");
+                botao.addEventListener("click", () => calculadora.AdicionarAoDisplay(digito));
+            }
+            else if (digito == "-/+") {
+                botao.classList.add("top");
+                botao.addEventListener("click", () => calculadora.TrocarSinal());
+            }
+            else if (digito == '0') {
+                botao.id = "zero";
+            }
+            else {
+                botao.addEventListener("click", () => calculadora.AdicionarAoDisplay(digito));
+            }
+
+            div.appendChild(botao);
+            document.getElementById("calculadora").appendChild(div);
+        }
+    </script>
+</body>
+
+</html>
